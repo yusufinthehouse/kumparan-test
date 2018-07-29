@@ -77,17 +77,12 @@ class Article extends React.Component {
 
 function bindAction(dispatch) {
     return {
-        // markAsRead: (job_id, client_id) => dispatch(markAsRead(job_id, client_id)),
-        // getJobList: (client_id) => dispatch(getJobList(client_id)),
-        // submitJob: () => dispatch(submitJob()),
-        // setRowOrder:(key,from,to) => dispatch(setRowOrder(key,from,to)),
-        // setFetching:(par)=> dispatch(setFetching(par))
+
     };
-}
+};
 
 const mapStateToProps = state => ({
-    auth: state.AuthReducer,
-    job: state.JobReducer,
+
 });
 
 export default connect(mapStateToProps, bindAction)(Article);
