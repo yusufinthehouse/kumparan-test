@@ -13,15 +13,15 @@ import { NavigationComponent } from 'react-native-material-bottom-navigation';
 import { Provider } from 'react-redux';
 import store from './store';
 
-import Article from 'KumparanTest/src/screens/Article/index';
-import Book from 'KumparanTest/src/screens/Book/index';
+import Article from 'kumparantest/src/screens/Article/index';
+import ArticleDetail from 'kumparantest/src/screens/ArticleDetail/index';
+import Book from 'kumparantest/src/screens/Book/index';
 
 const MainNavigator = StackNavigator({
-    // Home: { screen: Home },
     Main: {
       screen: TabNavigator({
-        Job: { screen: Article },
-        JobComplete: { screen: Book }
+        Article: { screen: Article },
+        Book: { screen: Book }
       }, {
         tabBarComponent: NavigationComponent,
         tabBarPosition: 'bottom',
@@ -30,10 +30,10 @@ const MainNavigator = StackNavigator({
             labelColor: 'white',
             rippleColor: 'white',
             tabs: {
-              Job: {
+              Article: {
                 barBackgroundColor: '#37474F'
               },
-              JobComplete: {
+              Book: {
                 barBackgroundColor: '#df1f2b'
               }
             }
@@ -41,16 +41,14 @@ const MainNavigator = StackNavigator({
         }
       })
     },
-    // Detail: {
-    //   screen: StackNavigator({
-    //     JobDetail: { screen: JobDetail },
-    //     ProofPhoto: { screen: ProofPhoto },
-    //     ProofSignature: { screen: ProofSignature }
-    //   }, {
-    //     headerMode: 'screen',
-    //     gesturesEnabled: false,
-    //   })
-    // }
+    Detail: {
+      screen: StackNavigator({
+        ArticleDetail: { screen: ArticleDetail }
+      }, {
+        headerMode: 'screen',
+        gesturesEnabled: false,
+      })
+    }
 }, {
     headerMode: 'none',
     swipeEnabled: false,

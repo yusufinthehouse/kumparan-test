@@ -37,7 +37,6 @@ class Article extends React.Component {
             .get("https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=f64de57779254564bbda1bd0dff284c4")
             .then(response => {
                 const articles = response.data.response.docs;
-                console.log(articles);
                 this.setState({ articles });
             })
             .catch(error => {
@@ -50,8 +49,6 @@ class Article extends React.Component {
     }
 
     render() {
-
-
         let data  = this.state.articles;
         let order = Object.keys(data)
 

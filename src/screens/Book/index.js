@@ -81,8 +81,7 @@ function bindAction(dispatch) {
 }
 
 const mapStateToProps = state => ({
-    auth: state.AuthReducer,
-    job: state.JobReducer,
+
 });
 
 export default connect(mapStateToProps, bindAction)(Book);

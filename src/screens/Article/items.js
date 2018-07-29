@@ -10,18 +10,17 @@ import {
     TouchableHighlight
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import { money, readableCompleteDate, getTimeOnly } from 'KumparanTest/src/helper/FormatHelper'
 
 const window = Dimensions.get('window');
 
 class Item extends React.Component {
 
     state = {
-        jobDetail: false
+        articleDetail: false
     };
 
     _handleDetail = (data) => {
-        this.props.navigation.navigate('JobDetail', { data });
+        this.props.navigation.navigate('ArticleDetail', { data });
     }
 
     constructor(props) {
