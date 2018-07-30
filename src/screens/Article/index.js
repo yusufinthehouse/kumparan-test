@@ -1,7 +1,10 @@
 import React from 'react';
 import {
     View,
+    TouchableHighlight,
     ListItem,
+    Text,
+    TextInput
 } from 'react-native';
 import SortableListView from 'react-native-sortable-listview';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -21,6 +24,8 @@ class Article extends React.Component {
     };
 
     state = {
+        sort: "newest",
+        search: "",
         articles: []
     };
 
@@ -33,8 +38,16 @@ class Article extends React.Component {
     }
 
     componentDidMount() {
+        this._getArticles();
+    }
+
+    componentWillUnmount() {
+
+    }
+
+    _getArticles = () => {
         axios
-            .get("https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=f64de57779254564bbda1bd0dff284c4")
+            .get("https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=f64de57779254564bbda1bd0dff284c4&sort=" + this.state.sort + "&q=" + this.state.search)
             .then(response => {
                 const articles = response.data.response.docs;
                 this.setState({ articles });
@@ -42,21 +55,50 @@ class Article extends React.Component {
             .catch(error => {
                 console.log(error);
             });
-    }
+    };
 
-    componentWillUnmount() {
+    _handleSearch = (text) => {
+            this.setState({ search: text }, () => { this._getArticles() });
+    };
 
-    }
+    _handleSort = () => {
+        if (this.state.sort == "newest") {
+            this.setState({ sort: "oldest" }, () => { this._getArticles(); });
+        } else {
+            this.setState({ sort: "newest" }, () => { this._getArticles(); });
+        }
+    };
 
     render() {
         let data  = this.state.articles;
-        let order = Object.keys(data)
+        let order = Object.keys(data);
 
         return (
-            <View style={Style.container} key={this.state.magicKey}>
+            <View style={Style.container}>
+                <View style={{ flexDirection: "row", backgroundColor: "gray", padding: 10 }}>
+                    <View style={{ flexDirection: "row", backgroundColor: "white", padding: 5 }}>
+                        <Icon size={24} color="black" name="search" style={{ paddingRight: 10 }} />
+                        <TextInput underlineColorAndroid = "transparent"
+                                   style={{ width: 200 }}
+                                   placeholder = "Search"
+                                   placeholderTextColor = "grey"
+                                   autoCapitalize = "none"
+                                   value={this.state.search}
+                                   onChangeText = {this._handleSearch}/>
+                    </View>
+
+                    <TouchableHighlight onPress={this._handleSort}>
+                        <View style={{ flexDirection: "row", width: 100, paddingHorizontal: 10, padding: 5, backgroundColor: "orange" }}>
+                            <Icon size={24} color="white" name={this.state.sort == "newest" ? "keyboard-arrow-up" : "keyboard-arrow-down"} />
+                            <Text style={{ paddingTop: 3, fontWeight: "bold" }}>{ this.state.sort == "newest" ? "Newest" : "Oldest" }</Text>
+                        </View>
+                    </TouchableHighlight>
+
+                </View>
+
                 <SortableListView
                     style={{ flex: 1 }}
-                    disableSorting={this.state.filter_par=="ordering"?false:true}
+                    disableSorting={true}
                     data={data}
                     order={order}
                     onRowMoved={r => {

@@ -59,17 +59,17 @@ class Item extends React.Component {
                             <Text style={{
                                 fontSize: 12,
                                 fontWeight: 'bold'
-                            }}>{ data.title }</Text>
+                            }}>{ data.book_details[0].title }</Text>
                             <Text>&emsp;</Text>
                             <Text style={{
                                 fontSize: 10,
                                 fontWeight: 'bold'
-                            }}>{ data.author }</Text>
+                            }}>{ data.book_details[0].author }</Text>
                             <Text>&emsp;</Text>
                             <Text style={{
                                 fontSize: 10,
                                 color: '#3f4042'
-                            }}>{ data.description }</Text>
+                            }}>{ data.book_details[0].description }</Text>
                         </View>
                     </View>
                 </TouchableHighlight>
