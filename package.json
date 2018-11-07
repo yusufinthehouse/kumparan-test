@@ -9,8 +9,8 @@
   "dependencies": {
     "axios": "^0.18.0",
     "react": "16.4.1",
-    "react-native": "0.56.0",
-    "react-native-action-button": "^2.8.4",
+    "react-native": "^0.57.4",
+    "react-native-action-button": "^2.8.5",
     "react-native-bar-collapsible": "^1.6.0",
     "react-native-collapsible": "^0.10.0",
     "react-native-communications": "^2.2.1",
@@ -19,9 +19,9 @@
     "react-native-material-bottom-navigation": "^0.8.2",
     "react-native-sortable-listview": "^0.2.7",
     "react-native-vector-icons": "^4.5.0",
-    "react-navigation": "^1.1.1",
-    "react-redux": "^5.0.7",
-    "redux": "^4.0.0",
+    "react-navigation": "^1.6.1",
+    "react-redux": "^5.1.0",
+    "redux": "^4.0.1",
     "redux-persist": "^5.10.0",
     "redux-thunk": "^2.3.0"
   },
